@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{0937435A-B8AF-42D8-B7D3-79CF3AC05867}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode", "LeetCode\LeetCode.csproj", "{CCB099AC-2CBD-45C7-AD6A-2D87BC5C796B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0937435A-B8AF-42D8-B7D3-79CF3AC05867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0937435A-B8AF-42D8-B7D3-79CF3AC05867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0937435A-B8AF-42D8-B7D3-79CF3AC05867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0937435A-B8AF-42D8-B7D3-79CF3AC05867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB099AC-2CBD-45C7-AD6A-2D87BC5C796B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB099AC-2CBD-45C7-AD6A-2D87BC5C796B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB099AC-2CBD-45C7-AD6A-2D87BC5C796B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB099AC-2CBD-45C7-AD6A-2D87BC5C796B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2D75FB9-CB88-476C-96C3-C7678755E2DE}
+	EndGlobalSection
+EndGlobal
