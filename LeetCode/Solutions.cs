@@ -1,4 +1,5 @@
-﻿using LeetCode.Utils;
+﻿using LeetCode.Models;
+using LeetCode.Utils;
 using System.Collections;
 using System.Text;
 
@@ -437,6 +438,186 @@ namespace LeetCode
             }
 
             return result;
+        }
+        #endregion
+        #region Problem19 - RemoveNthFromEnd
+        public static ListNode RemoveNthFromEnd(ListNode head, int n)
+        {
+            if (n < 1 || n > 30)
+                return null;
+
+            var nodes = new List<ListNode>();
+            var count = 0;
+
+            while (head != null)
+            {
+                if (count == 30)
+                {
+                    break;
+                }
+
+                nodes[count] = head;
+                head = head.next;
+                ++count;
+            }
+
+            if (count == n)
+            {
+                return nodes[0].next;
+            }
+
+            nodes[count - n - 1].next = nodes[count - n].next;
+
+            return nodes[0];
+        }
+        #endregion
+        #region Problem20 - Valid Parentheses
+        public static bool IsValid(string s)
+        {
+            if (s.Length == 0 || s.Length > 10000)
+            {
+                return false;
+            }
+
+            Stack<char> stack = new Stack<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                {
+                    stack.Push(s[i]);
+                }
+                else if (s[i] == ')' || s[i] == '}' || s[i] == ']')
+                {
+                    if (stack.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    var startPar = stack.Pop();
+
+                    if ((startPar == '(' && s[i] != ')') ||
+                        (startPar == '{' && s[i] != '}') ||
+                        (startPar == '[' && s[i] != ']'))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            if (stack.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
+        #region Problem21 - Merge Two Sorted List
+        public static ListNode MergeTwoLists(ListNode list1, ListNode list2)
+        {
+            if (list1 == null)
+                return list2;
+            if (list2 == null)
+                return list1;
+
+            if (list2.val > list1.val)
+            {
+                list1.next = MergeTwoLists(list1.next, list2);
+
+                return list1;
+            }
+
+            list2.next = MergeTwoLists(list1, list2.next);
+            return list2;
+        }
+        #endregion
+        #region Problem22 - Generate Parentheses
+
+        private static List<string> result = new List<string>();
+        private static int maxN;
+        public static IList<string> GenerateParenthesis(int n)
+        {
+            maxN = n;
+            GenerateAndCheck(new char[n * 2], 0, 0, 0);
+            return result;
+        }
+        private static void GenerateAndCheck(char[] str, int opened, int closed, int index)
+        {
+            if (opened == closed && opened == maxN)
+            {
+                result.Add(new string(str));
+                return;
+            }
+
+            if (opened < maxN)
+            {
+                str[index] = '(';
+                GenerateAndCheck(str, ++opened, closed, ++index);
+                --index;
+                --opened;
+            }
+            if (closed < opened)
+            {
+                str[index] = ')';
+                GenerateAndCheck(str, opened, ++closed, ++index);
+                --closed;
+                --index;
+            }
+        }
+        #endregion
+        #region Problem23 - Merge k sorted list
+        public static ListNode MergeKLists(ListNode[] lists)
+        {
+            if (lists == null || lists.Length == 0)
+                return null;
+
+            return Merge(lists, 0, lists.Length - 1);
+        }
+
+        private static ListNode Merge(ListNode[] lists, int i, int j)
+        {
+            if (j == i)
+                return lists[i];
+            else
+            {
+                int mid = i + (j - i) / 2;
+
+                ListNode left = Merge(lists, i, mid),
+                         right = Merge(lists, mid + 1, j);
+
+                return Merge(left, right);
+            }
+        }
+
+        private static ListNode Merge(ListNode list1, ListNode list2)
+        {
+            ListNode dummy = new ListNode(0),
+                     cur = dummy;
+
+            while (list1 != null && list2 != null)
+            {
+                if (list1.val <= list2.val)
+                {
+                    cur.next = list1;
+                    list1 = list1.next;
+                }
+                else
+                {
+                    cur.next = list2;
+                    list2 = list2.next;
+                }
+
+                cur = cur.next;
+            }
+
+            if (list1 != null)
+                cur.next = list1;
+
+            if (list2 != null)
+                cur.next = list2;
+
+            return dummy.next;
         }
         #endregion
         #region Problem224: Calculate
